@@ -55,13 +55,31 @@ function showDomainOptions() {
 
     function addDomainOption(domain) {
         const option = document.createElement('div');
-        option.textContent = domain;
+        option.style.display = 'flex';
+        option.style.alignItems = 'center';
         option.style.padding = '10px'; // Adjusted padding for better text wrapping
         option.style.cursor = 'pointer';
         option.style.backgroundColor = '#2e2e2e';
         option.style.borderBottom = '1px solid #444'; // Separator line color
         option.style.whiteSpace = 'normal'; // Allow text to wrap
-    
+
+        const domainText = document.createElement('span');
+        domainText.textContent = domain;
+        domainText.style.flexGrow = '1';
+
+        const removeButton = document.createElement('span');
+        removeButton.className = 'ExCKkf z1asCe rzyADb';
+        removeButton.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>';
+        removeButton.style.cursor = 'pointer';
+        removeButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            removeDomain(domain);
+            option.remove();
+        });
+
+        option.appendChild(domainText);
+        option.appendChild(removeButton);
+
         option.addEventListener('mouseover', () => {
             option.style.backgroundColor = '#444'; // Highlight color on hover
         });
@@ -88,6 +106,14 @@ function showDomainOptions() {
         });
     }
 
+    function removeDomain(domain) {
+        chrome.storage.local.get({ domains: [] }, function(result) {
+            let domains = result.domains;
+            domains = domains.filter(d => d !== domain);
+            chrome.storage.local.set({ domains: domains });
+        });
+    }
+
     document.body.appendChild(dropdown);
     const rect = searchBox.getBoundingClientRect();
     dropdown.style.left = `${rect.left}px`;
@@ -95,7 +121,7 @@ function showDomainOptions() {
     dropdown.style.width = `${rect.width}px`;
     dropdown.style.left = `${rect.left}px`;
     dropdown.style.top = `${rect.bottom}px`;
-    dropdown.style.width = `${rect.width}px`;
+    dropdown.style.width = `${rect.width}px`;   
     dropdown.style.height = `${rect.height}px`;
     dropdown.style.fontFamily = window.getComputedStyle(searchBox).fontFamily;
     dropdown.style.fontSize = window.getComputedStyle(searchBox).fontSize;
