@@ -6,7 +6,6 @@ document.addEventListener('keydown', function(event) {
 });
 
 function showDomainOptions() {
-    const domains = ['reddit.com', 'youtube.com', 'amazon.com', 'stackoverflow.com'];
     const searchBox = document.querySelector('textarea[name="q"]');
     
     // Remove any existing dropdown
@@ -23,7 +22,7 @@ function showDomainOptions() {
     // Add input field for custom domain
     const customDomainInput = document.createElement('input');
     customDomainInput.type = 'text';
-    customDomainInput.placeholder = 'Add custom domain + Enter ⏎';
+    customDomainInput.placeholder = 'Add custom domain then hit Enter ⏎';
     customDomainInput.style.width = 'calc(100% - 20px)';
     customDomainInput.style.margin = '10px';
     customDomainInput.style.padding = '5px';
@@ -33,6 +32,7 @@ function showDomainOptions() {
             const customDomain = customDomainInput.value.trim();
             if (customDomain) {
                 addDomainOption(customDomain);
+                saveDomain(customDomain);
                 customDomainInput.value = '';
             }
         }
@@ -40,8 +40,17 @@ function showDomainOptions() {
 
     dropdown.appendChild(customDomainInput);
 
-    domains.forEach(domain => {
-        addDomainOption(domain);
+    // Load domains from local storage
+    chrome.storage.local.get({ domains: null }, function(result) {
+        let domains = result.domains;
+        if (!domains) {
+            // Set initial domains if not present
+            domains = ['reddit.com', 'youtube.com', 'amazon.com', 'stackoverflow.com'];
+            chrome.storage.local.set({ domains: domains });
+        }
+        domains.forEach(domain => {
+            addDomainOption(domain);
+        });
     });
 
     function addDomainOption(domain) {
@@ -67,6 +76,16 @@ function showDomainOptions() {
         });
     
         dropdown.appendChild(option);
+    }
+
+    function saveDomain(domain) {
+        chrome.storage.local.get({ domains: [] }, function(result) {
+            const domains = result.domains;
+            if (!domains.includes(domain)) {
+                domains.push(domain);
+                chrome.storage.local.set({ domains: domains });
+            }
+        });
     }
 
     document.body.appendChild(dropdown);
