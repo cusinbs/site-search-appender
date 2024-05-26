@@ -147,14 +147,4 @@ function positionDropdown(dropdown, searchBox) {
     dropdown.style.left = `${rect.left}px`;
     dropdown.style.top = `${rect.bottom}px`;
     dropdown.style.width = `${rect.width}px`;
-    dropdown.style.height = `${rect.height}px`;
-    dropdown.style.fontFamily = window.getComputedStyle(searchBox).fontFamily;
-    dropdown.style.fontSize = window.getComputedStyle(searchBox).fontSize;
-    dropdown.style.color = window.getComputedStyle(searchBox).color;
-    dropdown.style.backgroundColor = window.getComputedStyle(searchBox).backgroundColor;
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const searchBox = document.querySelector('input[name="q"]');
-    searchBox.style.position = 'relative';
-});
