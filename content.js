@@ -73,6 +73,7 @@ function addDomainOption(dropdown, domain) {
     option.style.backgroundColor = '#2e2e2e';
     option.style.borderBottom = '1px solid #444';
     option.style.whiteSpace = 'normal';
+    option.style.color = 'white';
 
     const domainText = document.createElement('span');
     domainText.textContent = domain;
