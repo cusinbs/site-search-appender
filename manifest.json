@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Site Search Appender",
+    "version": "1.0",
+    "description": "Appends site:[domain name] to Google search queries.",
+    "permissions": ["activeTab", "scripting"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://www.google.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+      }
+    }
+  }
