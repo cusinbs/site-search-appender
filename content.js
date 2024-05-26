@@ -20,7 +20,31 @@ function showDomainOptions() {
     dropdown.style.position = 'absolute';
     dropdown.style.zIndex = '1000';
 
+    // Add input field for custom domain
+    const customDomainInput = document.createElement('input');
+    customDomainInput.type = 'text';
+    customDomainInput.placeholder = 'Add custom domain';
+    customDomainInput.style.width = 'calc(100% - 20px)';
+    customDomainInput.style.margin = '10px';
+    customDomainInput.style.padding = '5px';
+
+    customDomainInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const customDomain = customDomainInput.value.trim();
+            if (customDomain) {
+                addDomainOption(customDomain);
+                customDomainInput.value = '';
+            }
+        }
+    });
+
+    dropdown.appendChild(customDomainInput);
+
     domains.forEach(domain => {
+        addDomainOption(domain);
+    });
+
+    function addDomainOption(domain) {
         const option = document.createElement('div');
         option.textContent = domain;
         option.style.padding = '10px'; // Adjusted padding for better text wrapping
@@ -43,7 +67,7 @@ function showDomainOptions() {
         });
     
         dropdown.appendChild(option);
-    });
+    }
 
     document.body.appendChild(dropdown);
     const rect = document.querySelector('textarea[name="q"]').getBoundingClientRect();
