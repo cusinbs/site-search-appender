@@ -7,7 +7,7 @@ document.addEventListener('keydown', function(event) {
 
 function showDomainOptions() {
     const domains = ['reddit.com', 'youtube.com', 'amazon.com', 'stackoverflow.com'];
-    const searchBox = document.querySelector('input[name="q"]');
+    const searchBox = document.querySelector('textarea[name="q"]');
     
     // Remove any existing dropdown
     let existingDropdown = document.querySelector('#domain-dropdown');
@@ -23,7 +23,7 @@ function showDomainOptions() {
     // Add input field for custom domain
     const customDomainInput = document.createElement('input');
     customDomainInput.type = 'text';
-    customDomainInput.placeholder = 'Add custom domain';
+    customDomainInput.placeholder = 'Add custom domain + Enter ⏎';
     customDomainInput.style.width = 'calc(100% - 20px)';
     customDomainInput.style.margin = '10px';
     customDomainInput.style.padding = '5px';
@@ -70,7 +70,7 @@ function showDomainOptions() {
     }
 
     document.body.appendChild(dropdown);
-    const rect = document.querySelector('textarea[name="q"]').getBoundingClientRect();
+    const rect = searchBox.getBoundingClientRect();
     dropdown.style.left = `${rect.left}px`;
     dropdown.style.top = `${rect.bottom}px`;
     dropdown.style.width = `${rect.width}px`;
