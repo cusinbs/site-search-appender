@@ -7,10 +7,58 @@
       width: 200px;
       font-family: Arial, sans-serif;
     }
+    .donate-section {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .social-section {
+      margin-top: 20px;
+      text-align: left;
+    }
+    #donate-button {
+      background-color: #2e2e2e;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .social-links a {
+      margin: 0 5px;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <h3>Site Search Appender</h3>
-  <p>Press "/" to append site:[domain name] to your search query.</p>
+  <h4>Usage:</h4>
+  <p>In Google search bar, press "/" then select which domain to append to your search.</p>
+  <p>User can also add/remove domains as you see fit.</p>
+  
+  <div class="social-section">
+    <h4>Social:</h4>
+    <div class="social-links">
+      <a href="https://github.com/cusinbs" target="_blank">
+        <img src="images/github-logo.png" alt="GitHub" width="24" height="24">
+      </a>
+      <a href="https://x.com/banhtrangb0" target="_blank">
+        <img src="images/x-logo.png" alt="X" width="24" height="24">
+      </a>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="donate-section">
+    <p>If you like my work, consider buying me a coffee. Thank you!</p>
+    <a href="https://www.paypal.com/donate/?business=BT9FFK5WMAW24&no_recurring=0&currency_code=USD" target="_blank">
+      <button id="donate-button">Buy me a coffee</button>
+    </a>
+  </div>
 </body>
 </html>
