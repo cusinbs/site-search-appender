@@ -3,7 +3,7 @@
     "name": "Site Search Appender",
     "version": "1.0",
     "description": "Appends site:[domain name] to Google search queries.",
-    "permissions": ["activeTab", "scripting"],
+    "permissions": ["storage"],
     "background": {
       "service_worker": "background.js"
     },

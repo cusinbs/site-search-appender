@@ -6,7 +6,7 @@ document.addEventListener('keydown', function(event) {
 });
 
 function showDomainOptions() {
-    const domains = ['reddit.com', 'youtube.com', 'amazon.com'];
+    const domains = ['reddit.com', 'youtube.com', 'amazon.com', 'stackoverflow.com'];
     const searchBox = document.querySelector('input[name="q"]');
     
     // Remove any existing dropdown
