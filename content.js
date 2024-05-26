@@ -89,8 +89,17 @@ function addDomainOption(dropdown, domain) {
 
 function createRemoveButton(domain, option) {
     const removeButton = document.createElement('span');
-    removeButton.className = 'ExCKkf z1asCe rzyADb';
     removeButton.innerHTML = '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>';
+    removeButton.style.height = '100%';
+    removeButton.style.color = 'var(--IXoxUe)';
+    removeButton.style.verticalAlign = 'middle';
+    removeButton.style.outline = 'none';
+    removeButton.style.display = 'inline-block';
+    removeButton.style.fill = 'currentColor';
+    removeButton.style.height = '24px';
+    removeButton.style.lineHeight = '24px';
+    removeButton.style.position = 'relative';
+    removeButton.style.width = '24px';
     removeButton.style.cursor = 'pointer';
     removeButton.addEventListener('click', (event) => {
         event.stopPropagation();
